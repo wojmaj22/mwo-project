@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lista Piw</title>
+</head>
+
+<body>
+
+<h2>Lista Piw</h2>
+
+<table >
+  <thead>
+  <tr>
+    <th>Nazwa</th>
+    <th>Cena</th>
+    <th>Akcje</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr th:each="beer : ${list}">
+    <td th:text="${beer.name}">Nazwa Piwa</td>
+    <td th:text="${beer.price}">0.00</td>
+    <td>
+      <a th:href="@{'/delete/' + ${beer.id}}">Usuń</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br/>
+<a th:href="@{'/add'}">Dodaj Nowe Piwo</a>
+
+</body>
+
+</html>
