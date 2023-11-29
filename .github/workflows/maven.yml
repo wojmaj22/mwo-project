@@ -30,6 +30,12 @@ jobs:
       
     - uses: browser-actions/setup-chrome@latest
     - run: chrome --version
+
+    - name: Run app in localhost
+      run: mvn spring-boot:run
     
-    - name: Build with Maven
+    - name: Test with Maven
       run: mvn -B clean test
+
+    - name: Stop app
+      run: pkill -f java
