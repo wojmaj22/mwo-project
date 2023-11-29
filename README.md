@@ -1,5 +1,6 @@
 # CRUD application
-Projekt zawiera prostą aplikację MVC wykonaną w sping mvc impelentującą operacje CRUD
+Projekt zawiera prostą aplikację MVC wykonaną w sping mvc impelentującą operacje CRUD. Opis działania programu, testów
+oraz raportowania bugów do Azure DevOps znajduje się poniżej. Oprócz tego w pluku mp4 pokazane działanie w praktyce.
 ## Uruchomienie
 Do uruchomienia nie potrzeba żadnej konfiguracji, 
 natomiast należy mieć poprawnie zainstalowane java jdk 17 oraz maven.
