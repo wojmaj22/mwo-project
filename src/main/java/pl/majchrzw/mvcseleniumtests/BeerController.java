@@ -56,4 +56,6 @@ public class BeerController {
 		
 		return "redirect:/list";
 	}
+	
+	// change
 }

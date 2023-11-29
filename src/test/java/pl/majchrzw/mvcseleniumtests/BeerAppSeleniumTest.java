@@ -1,45 +1,52 @@
 package pl.majchrzw.mvcseleniumtests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Duration;
 import java.util.List;
 
-public class BeerAppSeleniumTest {
+@DisplayName("Application")
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+public class BeerAppSeleniumTest{
 	
-	private static WebDriver driver;
-	private static final String url = "http://localhost:8080";
+	protected static WebDriver driver;
+	protected final String url = "http://localhost:8080";
 	
-	@Before
-	public void setupAll() {
+	@BeforeClass
+	public static void init(){
 		WebDriverManager.chromedriver().setup();
-
+	}
+	
+	@BeforeEach
+	public void setupAll() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 	}
 	
 	@Test
+	@Order(2)
 	public void getBeerListTest() {
 		// get list
 		driver.get(url + "/list");
 		// check if table exists
 		WebElement table = driver.findElement(By.tagName("table"));
-		Assert.assertNotNull(table);
+		Assertions.assertNotNull(table);
 		// check if table has more than 1 row
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
-		Assert.assertTrue( rows.size() > 1);
+		Assertions.assertTrue( rows.size() > 1);
 	}
 	
 	@Test
+	@Order(1)
 	public void addBeerTest(){
 		// get current amount of beers in list
 		driver.get(url + "/list");
@@ -56,10 +63,11 @@ public class BeerAppSeleniumTest {
 		// check new amount
 		driver.get(url + "/list");
 		List<WebElement> beerList = driver.findElements(By.tagName("tr"));
-		Assert.assertEquals(elements+1, beerList.size());
+		Assertions.assertEquals(elements+1, beerList.size());
 	}
 	
 	@Test
+	@Order(4)
 	public void deleteBeerTest(){
 		// get current amount of beers in list
 		driver.get(url + "/list");
@@ -71,10 +79,11 @@ public class BeerAppSeleniumTest {
 		// check new amount
 		driver.get(url + "/list");
 		List<WebElement> beerList = driver.findElements(By.tagName("tr"));
-		Assert.assertEquals(elements-1, beerList.size());
+		Assertions.assertEquals(elements-1, beerList.size());
 	}
 	
 	@Test
+	@Order(3)
 	public void updateBeerTest(){
 		// get last beer in list
 		driver.get(url + "/list");
@@ -93,10 +102,15 @@ public class BeerAppSeleniumTest {
 		List<WebElement> newBeerList = driver.findElements(By.tagName("tr"));
 		WebElement newLastBeer = newBeerList.get(newBeerList.size()-1);
 		String newData = newLastBeer.getText();
-		Assert.assertNotEquals(data, newData);
+		Assertions.assertNotEquals(data, newData);
 	}
 	
-	@After
+	@Test
+	public void shouldFail(){
+		Assertions.assertEquals(0,1);
+	}
+	
+	@AfterEach
 	public void teardown() {
 		driver.quit();
 	}
