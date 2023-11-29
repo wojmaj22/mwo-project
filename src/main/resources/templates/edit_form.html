@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aktualizuj Piwo</title>
+</head>
+
+<body>
+    <h2>Aktualizuj Piwo</h2>
+    <form action="/update/{id}" method="post" th:object="${beer}" th:action="@{'/update/' + ${beer.id}}">
+        <label for="name">Nazwa:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required="required" />
+        <br/>
+        <label for="price">Cena:</label>
+        <input type="text" id="price" name="price" th:field="*{price}" required="required" />
+        <br/>
+        <button type="submit">Aktualizuj Piwo</button>
+    </form>
+
+    <br/>
+
+    <a th:href="@{'/beers'}">Powrót do Listy Piw</a>
+
+</body>
+
+</html>

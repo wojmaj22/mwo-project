@@ -37,4 +37,23 @@ public class BeerController {
 		service.deleteBeer(id);
 		return "redirect:/list";
 	}
+	
+	@GetMapping("/update/{id}")
+	public String showUpdateForm(@PathVariable Integer id, Model model) {
+		// Pobierz piwo do aktualizacji z serwisu
+		Beer beerToUpdate = service.getBeerById(id);
+		
+		// Przekaż piwo do formularza Thymeleaf
+		model.addAttribute("beer", beerToUpdate);
+		
+		return "edit_form";
+	}
+	
+	@PostMapping("/update/{id}")
+	public String updateBeer(@PathVariable Integer id, @ModelAttribute Beer updatedBeer) {
+		// Zaktualizuj piwo w serwisie
+		service.updateBeer(id, updatedBeer);
+		
+		return "redirect:/list";
+	}
 }

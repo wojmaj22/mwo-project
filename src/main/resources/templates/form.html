@@ -7,22 +7,18 @@
 </head>
 
 <body>
-
-<h2>Dodaj Nowe Piwo</h2>
-
-<form action="/add" method="post" th:object="${beer}">
-
-  <label for="name">Nazwa:</label>
-  <input type="text" id="name" name="name" th:field="*{name}" required="required" />
-  <br/>
-  <label for="price">Cena:</label>
-  <input type="text" id="price" name="price" th:field="*{price}" required="required" />
-  <br/>
-  <button type="submit">Dodaj Piwo</button>
-</form>
-
-<br/>
-<a th:href="@{'/list'}">Powrót do Listy Piw</a>
+    <h2>Dodaj Nowe Piwo</h2>
+    <form action="/add" method="post" th:object="${beer}">
+      <label for="name">Nazwa:</label>
+      <input type="text" id="name" name="name" th:field="*{name}" required="required" />
+      <br/>
+      <label for="price">Cena:</label>
+      <input type="text" id="price" name="price" th:field="*{price}" required="required" />
+      <br/>
+      <button id="submit-button" type="submit">Dodaj Piwo</button>
+    </form>
+    <br/>
+    <a th:href="@{'/list'}">Powrót do Listy Piw</a>
 
 </body>
 

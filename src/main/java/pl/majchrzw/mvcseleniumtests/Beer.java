@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class Beer {
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.SEQUENCE)
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column

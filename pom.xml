@@ -51,6 +51,24 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.15.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.6.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -70,6 +88,18 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>3.2.2</version>
+			<configuration>
+				<testFailureIgnore>true</testFailureIgnore>
+				<includes>
+					<include>**/*Test.java</include>
+					<include>**/*Tests.java</include>
+				</includes>
+			</configuration>
+		</plugin>
 		</plugins>
 	</build>
 

@@ -10,9 +10,10 @@
 
 <h2>Lista Piw</h2>
 
-<table >
+<table id="table">
   <thead>
   <tr>
+    <th>Id</th>
     <th>Nazwa</th>
     <th>Cena</th>
     <th>Akcje</th>
@@ -21,10 +22,12 @@
   <tbody>
 
   <tr th:each="beer : ${list}">
+    <td th:text="${beer.id}">Id Piwa</td>
     <td th:text="${beer.name}">Nazwa Piwa</td>
     <td th:text="${beer.price}">0.00</td>
     <td>
-      <a th:href="@{'/delete/' + ${beer.id}}">Usuń</a>
+      <a id="delete-button" th:href="@{'/delete/' + ${beer.id}}">Usuń</a>
+      <a id="update-button" th:href="@{'/update/' + ${beer.id}}">Edytuj</a>
     </td>
   </tr>
   </tbody>
