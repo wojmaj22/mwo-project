@@ -33,3 +33,18 @@ jobs:
     
     - name: Test with Maven
       run: mvn -B clean test
+
+    - name: The job has failed
+      uses: stefanstranger/azuredevops-bug-action@1.1
+      if: failure()
+      with:
+        OrganizationName: "MWO2023Z"
+        PAT: "PAT"
+        ProjectName: "mwo-projekt"
+        AreaPath: "mwo-projekt"
+        IterationPath: "mwo-projekt"
+        GithubToken: "GithubToken"
+        WorkflowFileName: "maven.yml"
+      env:
+        PAT: ${{ secrets.DEVOPSPAT}}
+        GithubToken: ${{ secrets.GITHUBTOKEN}}
