@@ -105,10 +105,12 @@ public class BeerAppSeleniumTest{
 		Assertions.assertNotEquals(data, newData);
 	}
 	
+	
 	@Test
 	public void shouldFail(){
 		Assertions.assertEquals(0,1);
 	}
+	
 	
 	@AfterEach
 	public void teardown() {
